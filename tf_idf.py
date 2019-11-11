@@ -30,6 +30,6 @@ def computeTFIDF(df):
     matrix.to_csv(r'./tfidf.csv')       #takes about 30 seconds to write 3000ish samples
     return matrix
 
-#Here's an example using /split/training_data.csv
+#Here's an example
 example = pd.read_csv('./split/1/training_data.csv', header=0)
 computeTFIDF(example)
