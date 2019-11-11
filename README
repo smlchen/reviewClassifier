@@ -1,0 +1,8 @@
+/split folder contains 5 sets of training and test data. They were produced by doing a 5-fold cross validation after shuffling the original dataset. For more information, please refer to /tf_idf.py
+
+In this case, five models will be trained and evaluated with each fold given a chance to be the held out test set. An example is shown below: 
+-Model 1: Train on Fold1 + Fold2 + Fold3 + Fold4, Test on Fold5
+-Model 2: Train on Fold2 + Fold3 + Fold4 + Fold5, Test on Fold1
+-Model 3: Train on Fold3 + Fold4 + Fold5 + Fold1, Test on Fold2
+-Model 4: Train on Fold4 + Fold5 + Fold1 + Fold2, Test on Fold3
+-Model 4: Train on Fold5 + Fold1 + Fold2 + Fold3, Test on Fold4
