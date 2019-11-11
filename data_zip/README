@@ -1,0 +1,12 @@
+1. This fold contains 29 GZ files downloaded from https://nijianmo.github.io/amazon/index.html. Files that are greater than 500 MB are separated in /large_data Folder because it takes forever to process them.
+
+2. Data File Structure:
+data_zip
+- *everything else
+large_data
+- Books_5.json.gz (6.60GB)
+- Clothing_Shoes_And_Jewelry_5.json.gz (1.17GB)
+- Electronics_5.json.gz (1.16GB)
+- Home_And_Kitchen_5.json.gz (909 MB)
+- Movies_And_TV_5.josn.gz (754 MB)
+- Kindle_Store_5.json.gz (513 MB)
