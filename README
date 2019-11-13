@@ -5,4 +5,4 @@ In this case, five models will be trained and evaluated with each fold given a c
 -Model 2: Train on Fold2 + Fold3 + Fold4 + Fold5, Test on Fold1
 -Model 3: Train on Fold3 + Fold4 + Fold5 + Fold1, Test on Fold2
 -Model 4: Train on Fold4 + Fold5 + Fold1 + Fold2, Test on Fold3
--Model 4: Train on Fold5 + Fold1 + Fold2 + Fold3, Test on Fold4
+-Model 5: Train on Fold5 + Fold1 + Fold2 + Fold3, Test on Fold4
