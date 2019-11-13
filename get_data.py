@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Fri Nov  8 04:12:16 2019
+UPDATE 11/12/19 - bumped up num of data to 439 (max of Amazon_Fashion_5.json.gz)
 
 @author: Vincent, Sean
 """
@@ -16,10 +17,10 @@ Created on Fri Nov  8 04:12:16 2019
 # - Kindle_Store_5.json.gz (513 MB)
 # data
 # - *everything else
+# - removed Appliances_5.json.gz due to small unique number of reviews
 import glob, os, pandas as pd
 import random
 os.chdir(r"D:/data_zip")     # path of categories
-i =1
 dff= pd.DataFrame()
 	
 for file in glob.glob("*.gz"):
@@ -28,9 +29,8 @@ for file in glob.glob("*.gz"):
     print(data_df.shape)
     data_df=data_df.drop_duplicates(subset='reviewText')
     print(data_df.shape)
-    data_df = data_df.sample(n = 140)           # draw 500 random samples
+    data_df = data_df.sample(n = 439)           # draw 500 random samples
     data_df['Category'] = file.replace('_5.json.gz','')
-    i+=1
     dff=dff.append(data_df)
     print("---------")
     
@@ -47,7 +47,7 @@ for file in glob.glob("*.gz"):
         print(df.shape)
         df=df.drop_duplicates(subset='reviewText')
         print(df.shape)
-        df = df.sample(n = 140)
+        df = df.sample(n = 439)
         df['Category'] = file.replace('_5.json.gz','')
         d = d.append(df)
         print("---------")
