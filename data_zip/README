@@ -10,3 +10,5 @@ large_data
 - Home_And_Kitchen_5.json.gz (909 MB)
 - Movies_And_TV_5.josn.gz (754 MB)
 - Kindle_Store_5.json.gz (513 MB)
+
+3. Removed Appliances_5.json.gz due to small unique number of reviews
