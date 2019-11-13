@@ -25,8 +25,8 @@ for train_index, test_index in kf.split(tfidf):
     train, test = tfidf.iloc[train_index], tfidf.iloc[test_index]
     train = train.reset_index(drop=True)
     test = test.reset_index(drop=True)
-    print(train.shape)
-    print(test.shape)
-    train.to_csv(r'./split/' + str(i) + r'/training_data.csv', index=False)
-    test.to_csv(r'./split/' + str(i) + r'/test_data.csv', index=False)
+    # print(train.shape)
+    # print(test.shape)
+    # train.to_csv(r'./split/' + str(i) + r'/training_data.csv', index=False)
+    # test.to_csv(r'./split/' + str(i) + r'/test_data.csv', index=False)
     i += 1
