@@ -4,32 +4,29 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.model_selection import KFold
 from pprint import pprint
 
-amazon = pd.read_csv('./cleanAmazon_5_features.csv', header=0)      #reading in data
-amazon = amazon.sample(frac=1, random_state=100).reset_index(drop=True)               #shuffle
-# print(amazon)
+#function for computing a tf-idf matrix given training/test data
+def computeTFIDF(df):
+    collection = df['cleanText'].astype(str).tolist()
+    tfidf = TfidfVectorizer(token_pattern=r'(?u)\b[A-Za-z]+\b')     #regrex ignores any that contains numbers
+    features = tfidf.fit_transform(collection)
+    matrix = pd.DataFrame(features.todense(), columns=tfidf.get_feature_names())    #panda dataFrame representation of the matrix
+    return matrix
+
+amazon = pd.read_csv('./cleanAmazon_reviewtextOnly.csv', header=0)
+tfidf = computeTFIDF(amazon)
+tfidf = tfidf.sample(frac=1, random_state=100).reset_index(drop=True)               #shuffle
 
 # splittig into training and test data using 5-fold cross validation
 kf = KFold(n_splits=5)
 i = 1
-for train_index, test_index in kf.split(amazon):
+for train_index, test_index in kf.split(tfidf):
     # print("TRAIN:", train_index)
     # print("TEST:", test_index)
-    train, test = amazon.iloc[train_index], amazon.iloc[test_index]
+    train, test = tfidf.iloc[train_index], tfidf.iloc[test_index]
     train = train.reset_index(drop=True)
     test = test.reset_index(drop=True)
+    print(train.shape)
+    print(test.shape)
     train.to_csv(r'./split/' + str(i) + r'/training_data.csv', index=False)
     test.to_csv(r'./split/' + str(i) + r'/test_data.csv', index=False)
     i += 1
-
-# #function for computing a tf-idf matrix given training/test data
-# def computeTFIDF(df):
-#     collection = df['cleanText'].astype(str).tolist()
-#     tfidf = TfidfVectorizer(token_pattern=r'(?u)\b[A-Za-z]+\b')     #regrex ignores any that contains numbers
-#     features = tfidf.fit_transform(collection)
-#     matrix = pd.DataFrame(features.todense(), columns=tfidf.get_feature_names())    #panda dataFrame representation of the matrix
-#     matrix.to_csv(r'./tfidf.csv')       #takes about 2 minutes and a half to produce the file
-#     return matrix
-#
-# #Here's an example
-# example = pd.read_csv('./split/1/training_data.csv', header=0)
-# computeTFIDF(example)
