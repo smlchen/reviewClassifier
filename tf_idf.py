@@ -14,21 +14,21 @@ def computeTFIDF(df):
 
 amazon = pd.read_csv('./cleanAmazon_reviewtextOnly.csv', header=0)
 tfidf = computeTFIDF(amazon)
-tfidf['category'] = amazon['Category']
-tfidf['rating'] = amazon['overall']
+tfidf['output1'] = amazon['Category']
+tfidf['output2'] = amazon['overall']
 tfidf = tfidf.sample(frac=1, random_state=100).reset_index(drop=True)               #shuffle
 
-splittig into training and test data using 5-fold cross validation
+# splittig into training and test data using 5-fold cross validation
 kf = KFold(n_splits=5)
 i = 1
 for train_index, test_index in kf.split(tfidf):
-    print("TRAIN:", train_index)
-    print("TEST:", test_index)
+    # print("TRAIN:", train_index)
+    # print("TEST:", test_index)
     train, test = tfidf.iloc[train_index], tfidf.iloc[test_index]
     train = train.reset_index(drop=True)
     test = test.reset_index(drop=True)
-    print(train.shape)
-    print(test.shape)
+    # print(train.shape)
+    # print(test.shape)
     train.to_csv(r'./split/' + str(i) + r'/training_data.csv', index=False)
     test.to_csv(r'./split/' + str(i) + r'/test_data.csv', index=False)
     i += 1
