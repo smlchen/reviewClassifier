@@ -11,7 +11,7 @@ data = amazon['cleanText'].tolist()
 tagged_data = [TaggedDocument(words=word_tokenize(_d),
         tags=[str(i)]) for i, _d in enumerate(data)]
 max_epochs = 10
-vec_size = 25
+vec_size = 1483
 alpha = 0.025
 
 model = Doc2Vec(size=vec_size,
