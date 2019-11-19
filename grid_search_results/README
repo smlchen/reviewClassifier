@@ -1,0 +1,7 @@
+1. This folder contains the hyperparameter grid search results
+
+results.csv contain the summary results of each model tested
+.h5 files are the saved keras models
+.history files are conatin the history of fitting the model
+.pkl files are saved logistic regression models
+
