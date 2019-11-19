@@ -23,8 +23,8 @@ def log_regression(X_train, y_train, X_test, y_test, metrics=['accuracy'], class
     file_name = ''
     if save_model:
         path = r'./grid_search_results/'
-        file_name = str(int(time.time()))
-        joblib.dump(model, path + file_name + '.pkl')
+        file_name = str(int(time.time())) + '.pkl'
+        joblib.dump(model, path + file_name)
     results = save_grid_search_results(dict(file_name=file_name, predict=predict, predictor_type='log_regression', weighted=weighted, accuracy=accuracy))
     
     return results
