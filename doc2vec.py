@@ -3,6 +3,7 @@ from gensim.models.doc2vec import Doc2Vec, TaggedDocument
 from nltk.tokenize import word_tokenize
 import pandas as pd
 import json
+from sklearn.model_selection import KFold
 
 amazon = pd.read_csv('./cleanAmazon_reviewtextOnly.csv', header=0)
 doc2vec = amazon.dropna()            #getting rid of null values in cleantextd
@@ -39,3 +40,19 @@ similar_doc = model.docvecs.most_similar('2')
 vectors = model.docvecs.doctag_syn0.tolist()
 doc2vec['Vector'] = vectors
 doc2vec.to_csv(r'doc2vec.csv', index=False)
+
+#randomize and split and data into training and test
+doc2vec = doc2vec.sample(frac=1, random_state=100).reset_index(drop=True)               #shuffle
+kf = KFold(n_splits=5)
+i = 1
+for train_index, test_index in kf.split(doc2vec):
+    # print("TRAIN:", train_index)
+    # print("TEST:", test_index)
+    train, test = doc2vec.iloc[train_index], doc2vec.iloc[test_index]
+    train = train.reset_index(drop=True)
+    test = test.reset_index(drop=True)
+    # print(train.shape)
+    # print(test.shape)
+    train.to_csv(r'./split_doc2vec/' + str(i) + r'/training_data.csv', index=False)
+    test.to_csv(r'./split_doc2vec/' + str(i) + r'/test_data.csv', index=False)
+    i += 1
