@@ -36,7 +36,7 @@ def grid_search(X_train, y_train, X_test, y_test, num_hidden_layers_list=[1], nu
                         pd.DataFrame(history.history).to_csv(path + file_name + '.history', index=False)
                     
                     #save results
-                    results = save_grid_search_results(dict(file_name=file_name, predict=predict, predictor_type='neural_net', layers=num_hidden_layers,nodes=num_nodes, activation= str(activation) + r'/' + str(output_activation),\
+                    results = save_grid_search_results(dict(file_name=file_name+'.h5', predict=predict, predictor_type='neural_net', layers=num_hidden_layers,nodes=num_nodes, activation= str(activation) + r'/' + str(output_activation),\
                         optimizer=optimizer,loss_function=loss, epochs=epochs, batch_size=batch_size, weighted=weighted, loss=eval_loss, accuracy=accuracy))
     
     return results
