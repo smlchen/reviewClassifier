@@ -1,10 +1,9 @@
 import pandas as pd
 import os.path
 
-def save_grid_search_results(search_results):
+def save_grid_search_results(path, search_results):
     
     #create or open results df
-    path = r'./grid_search_results/'
     if os.path.exists(path + 'results.csv'):
         results = pd.read_csv(path + 'results.csv', header=0)
     else: 

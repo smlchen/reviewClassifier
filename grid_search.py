@@ -8,13 +8,13 @@ from save_grid_search_results import save_grid_search_results
 
 def grid_search(X_train, y_train, X_test, y_test, num_hidden_layers_list=[1], num_nodes_list=[4], epochs_list=[50], batch_size_list=[32], verbose=2, \
     activation= 'relu', output_activation = 'softmax', optimizer = 'adam', initializer = 'glorot_uniform',\
-        loss = 'categorical_crossentropy',  metrics=['accuracy'], callbacks=None, class_weight=None, save_model=False, predict_rating=True):
+        loss = 'categorical_crossentropy',  metrics=['accuracy'], callbacks=None, class_weight=None, save_model=False, predict_rating=True, using_tfidf=True):
     
     input_dim = np.shape(X_train)[1]
     output_dim = len(np.unique(np.argmax(y_train, axis=1)))
     weighted = 'False' if not class_weight else 'True'
     predict = 'rating' if predict_rating else 'category'
-    path = r'./grid_search_results/' 
+    path = r'./grid_search_results/' if using_tfidf else r'./doc2vec_grid_search_results/'
     
     #grid of all combinations of layers, nodes, epochs, batch_size 
     for num_hidden_layers in num_hidden_layers_list:
@@ -36,7 +36,7 @@ def grid_search(X_train, y_train, X_test, y_test, num_hidden_layers_list=[1], nu
                         pd.DataFrame(history.history).to_csv(path + file_name + '.history', index=False)
                     
                     #save results
-                    results = save_grid_search_results(dict(file_name=file_name+'.h5', predict=predict, predictor_type='neural_net', layers=num_hidden_layers,nodes=num_nodes, activation= str(activation) + r'/' + str(output_activation),\
+                    results = save_grid_search_results(path, dict(file_name=file_name+'.h5', predict=predict, predictor_type='neural_net', layers=num_hidden_layers,nodes=num_nodes, activation= str(activation) + r'/' + str(output_activation),\
                         optimizer=optimizer,loss_function=loss, epochs=epochs, batch_size=batch_size, weighted=weighted, loss=eval_loss, accuracy=accuracy))
     
     return results
