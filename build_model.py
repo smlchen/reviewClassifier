@@ -2,7 +2,7 @@ from keras.models import Sequential
 from keras.layers import Dense
 
 
-def build_model(num_hidden_layers, num_nodes, input_dim, output_dim, activation= 'relu', output_activation = 'softmax', optimizer = 'adam', initializer = 'glorot_uniform', loss = 'categorical_crossentropy', metrics=['accuracy']):
+def build_model(num_hidden_layers, num_nodes, input_dim, output_dim, activation= 'relu', clipnorm=1.0, output_activation = 'softmax', optimizer = 'adam', initializer = 'glorot_uniform', loss = 'categorical_crossentropy', metrics=['accuracy']):
     
     #create the NN
     #with num_hidden_layers each with num_nodes
