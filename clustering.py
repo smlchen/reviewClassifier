@@ -50,7 +50,7 @@ combined_d2v = pd.concat([combined_d2v.iloc[:, 0:2], split], axis=1)
 
 # The star ratings and tfidf/doc2vec matrix is in the same dataframe. We have to separate the star ratings from the matrices in order to perform clustering.
 
-# In[4]:
+# In[118]:
 
 
 # Unbalanced classes.
@@ -138,15 +138,15 @@ def perform_kmeans(df_labels, df_vec, num_clusters):
 # df_d2v_kmeans = perform_kmeans(outputs_d2v, vec_d2v, 5)
 
 
-# In[110]:
+# In[113]:
 
 
 # Pickle kmeans dataframes so we don't have to re run kmeans.
 # df_tfidf_kmeans.to_pickle("./kmeans/df_tfidf_kmeans")
 # df_d2v_kmeans.to_pickle("./kmeans/df_d2v_kmeans")
 
-df_tfidf_kmeans = pd.read_pickle("./kmeans/df_tfidf_kmeans")
-df_d2v_kmeans = pd.read_pickle("./kmeans/df_d2v_kmeans")
+df_tfidf_kmeans = pd.read_pickle("./clustering_results/df_tfidf_kmeans")
+df_d2v_kmeans = pd.read_pickle("./clustering_results/df_d2v_kmeans")
 
 
 # ### Dimensionality reduction with PCA
@@ -174,17 +174,17 @@ def perform_pca(df_labels, df_vec):
     return df
 
 
-# In[7]:
+# In[122]:
 
 
 # Perform pca and save the result as a pickle file.
 
 # pca_tfidf = perform_pca(df_tfidf_kmeans, vec_tfidf)
-# pca_tfidf.to_pickle("./kmeans/pca_tfidf")
-pca_tfidf = pd.read_pickle("./kmeans/pca_tfidf")
+# pca_tfidf.to_pickle("./clustering_results/pca_tfidf")
+pca_tfidf = pd.read_pickle("./clustering_results/pca_tfidf")
 
 
-# In[9]:
+# In[124]:
 
 
 # Plot tfidf PCA results.
@@ -193,16 +193,16 @@ ax = sns.scatterplot(x='pc1', y='pc2', data=pca_tfidf, hue='cluster', palette=sn
                      style = 'rating', s = 100, alpha = 0.3)
 
 
-# In[ ]:
+# In[123]:
 
 
 # Perform pca and save the result as a pickle file.
-pca_d2v = perform_pca(df_d2v_kmeans, vec_d2v)
-pca_d2v.to_pickle("./kmeans/pca_d2v")
-pca_tfidf = pd.read_pickle("./kmeans/pca_tfidf")
+# pca_d2v = perform_pca(df_d2v_kmeans, vec_d2v)
+# pca_d2v.to_pickle("./clustering_results/pca_d2v")
+pca_tfidf = pd.read_pickle("./clustering_results/pca_tfidf")
 
 
-# In[11]:
+# In[125]:
 
 
 # Plot doc2vec PCA results.
@@ -245,10 +245,10 @@ def perform_tsne(df_labels, df_vec, lr):
 # df_tfidf_kmeans = perform_kmeans(outputs_tfidf, vec_tfidf, 5)
 # df_d2v_kmeans = perform_kmeans(outputs_d2v, vec_d2v, 5)
 
-# df_tfidf_kmeans.to_pickle("./kmeans/df_tfidf_tsne_balanced")
-# df_d2v_kmeans.to_pickle("./kmeans/df_d2v_tsne_balanced")
-df_tfidf_tsne_balanced = pd.read_pickle("./kmeans/df_tfidf_tsne_balanced")
-df_d2v_tsne_balanced = pd.read_pickle("./kmeans/df_d2v_tsne_balanced")
+# df_tfidf_kmeans.to_pickle("./clustering_results/df_tfidf_tsne_balanced")
+# df_d2v_kmeans.to_pickle("./clustering_results/df_d2v_tsne_balanced")
+df_tfidf_tsne_balanced = pd.read_pickle("./clustering_results/df_tfidf_tsne_balanced")
+df_d2v_tsne_balanced = pd.read_pickle("./clustering_results/df_d2v_tsne_balanced")
 
 
 # In[29]:
@@ -257,8 +257,8 @@ df_d2v_tsne_balanced = pd.read_pickle("./kmeans/df_d2v_tsne_balanced")
 # Perform t-SNE on the tfidf matrix.
 
 #df_tfidf_tsne = perform_tsne(df_tfidf_kmeans, vec_tfidf)
-#df_tfidf_tsne.to_pickle("./kmeans/df_tfidf_tsne")
-df_tfidf_tsne = pd.read_pickle("./kmeans/df_tfidf_tsne")
+#df_tfidf_tsne.to_pickle("./clustering_results/df_tfidf_tsne")
+df_tfidf_tsne = pd.read_pickle("./clustering_results/df_tfidf_tsne")
 
 
 # In[71]:
@@ -275,8 +275,8 @@ ax = sns.scatterplot(x='tsne1', y='tsne2', data=df_tfidf_tsne, hue='cluster', pa
 
 # Perform t-SNE on the doc2vec matrix.
 #df_d2v_tsne = perform_tsne(df_d2v_kmeans, vec_d2v)
-#df_d2v_tsne.to_pickle("./kmeans/df_d2v_tsne")
-df_d2v_tsne = pd.read_pickle("./kmeans/df_d2v_tsne")
+#df_d2v_tsne.to_pickle("./clustering_results/df_d2v_tsne")
+df_d2v_tsne = pd.read_pickle("./clustering_results/df_d2v_tsne")
 
 
 # In[74]:
