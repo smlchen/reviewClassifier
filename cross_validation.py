@@ -95,6 +95,9 @@ def cross_validate_tfidf():
             most_AUC = sum(auc.values())
             best_model = file_name
 
+    model = load_model(best_model)
+    y_predict = model.predict(X_test)
+    fpr, tpr, auc = get_roc_auc(y_test, y_predict)
     plotROC(fpr, tpr, auc)
     # FIXME: need to average the ROC / AUC curves with the different folds.
     # FIXME: getROCForAllFolds(best_model)
