@@ -77,8 +77,20 @@ def getROCForAllFolds(best_model):
 
 def cross_validate_tfidf():
     """ Referenced implementation: https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html """
-    _, _, X_test, y_test, results = getData(fold="1")
+    _, _, X_test, y_test, results = getData(fold="2")
 
+    # best_model = findBestModel(X_test, y_test, results)
+    # best_model = 'grid_search_results/1574183552.h5'
+    model = load_model("grid_search_results/1574183552.h5")
+
+    y_predict = model.predict(X_test)
+    fpr, tpr, auc = get_roc_auc(y_test, y_predict)
+    plotROC(fpr, tpr, auc)
+    # FIXME: need to average the ROC / AUC curves with the different folds.
+    # FIXME: getROCForAllFolds(best_model)
+
+
+def findBestModel(X_test, y_test, results):
     # Find best model to work with against the 1st fold of data.
     best_model = ""
     most_AUC = 0
@@ -94,13 +106,7 @@ def cross_validate_tfidf():
         if most_AUC < sum(auc.values()):
             most_AUC = sum(auc.values())
             best_model = file_name
-
-    model = load_model(best_model)
-    y_predict = model.predict(X_test)
-    fpr, tpr, auc = get_roc_auc(y_test, y_predict)
-    plotROC(fpr, tpr, auc)
-    # FIXME: need to average the ROC / AUC curves with the different folds.
-    # FIXME: getROCForAllFolds(best_model)
+    return best_model
 
 
 if __name__ == '__main__':
