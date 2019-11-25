@@ -57,7 +57,7 @@ def plotROC(fpr, tpr, auc):
     plt.ylabel('True Positive Rate')
     plt.title('ROC Curves for Ratings')
     plt.legend(loc="lower right")
-    plt.show()
+    plt.savefig("plots/ROC_tfidf.pdf")
 
 
 def get_roc_auc(y_test, y_predict):
@@ -70,7 +70,7 @@ def get_roc_auc(y_test, y_predict):
 
 def cross_validate_tfidf():
     """ Referenced implementation: https://scikit-learn.org/stable/auto_examples/model_selection/plot_roc.html """
-    X_test, y_test, results = getData(fold="all")
+    X_test, y_test, results = getData(fold="2")
 
     # best_model = findBestModel(X_test, y_test, results)
     # best_model = 'grid_search_results/1574183552.h5'
