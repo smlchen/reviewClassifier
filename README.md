@@ -1,5 +1,5 @@
 ### What is this for?
-This program will use two different machine learning algorithms: Artificial Neural Network (ANN) and K-means clustering, and compare their accuracy at predicting overall star rating from Amazon review texts. Both tf-idf and Doc2Vec as feature selection methods will be compared against each other, to see if data sparsity affects classification accuracy.
+This program will use Artificial Neural Network (ANN) to predict overall star rating from Amazon review texts. Both tf-idf and Doc2Vec as feature selection methods will be compared against each other, to see if data sparsity affects classification accuracy.
 
 ### Installation
 + `pip3 install pandas`
