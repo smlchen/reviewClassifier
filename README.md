@@ -6,6 +6,8 @@ This program will use Artificial Neural Network (ANN) to predict overall star ra
 + `pip3 install numpy`
 + `pip3 install keras`
 + `pip3 install tensorflow`
++ `pip3 install gensim`
++ `pip3 install scikit-learn`
 
 ### How to use reviewClassifier
 **Obtaining the master random data over 28 categories of Amazon reviews.** 
