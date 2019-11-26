@@ -36,7 +36,7 @@ In this case, five models will be trained and evaluated with each fold given a c
 
 ``` ./doc2vec.py ```
 
-**Building the model.** Implement a Feed Forward Network on both the Tf-idf and Doc2Vec matrix and a gridsearch to determine the best activation function, nodes, and layer hyperparameters. Once the output was hot label encoded, the matrix were ran through a grid search sweep to determine the most optimal hyperparameters for our two different models. 
+**Building the model.** Implement a Feed Forward Network on both the Tf-idf and Doc2Vec matrix and a gridsearch to determine the best activation function, nodes, and layer hyperparameters. Once the output was hot label encoded, the matrix were ran through a grid search sweep to determine the most optimal hyperparameters for our two different models. Models are saved to ./grid_search_results/ for TF-IDF models and ./doc2vec_grid_search_results for Doc2Vec models. 
 
 ``` ./run_grid_search.py ```
 
@@ -45,8 +45,7 @@ In this case, five models will be trained and evaluated with each fold given a c
 
 ``` ./clustering.py ```
 
-**Receiver operating characteristic (ROC) curve.**
+**Receiver operating characteristic (ROC) curve.** Plots of the ROC curves are generated for the ratings for the saved models using 5-fold cross validation. Plots are saved in ./roc_plots
 
-``` ./ROC_tfidf.py ```
+``` ./roc_curves.py ```
 
-``` ./ROC_doc2vec.py ```
